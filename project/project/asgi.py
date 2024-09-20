@@ -1,5 +1,5 @@
 """
-ASGI config for DjangoChat project.
+ASGI config for project project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 """
 
 from channels.routing import ProtocolTypeRouter, URLRouter
-from ChitChat import routing
+from app import routing
 from channels.auth import AuthMiddlewareStack
 import os
 from django.core.asgi import get_asgi_application
