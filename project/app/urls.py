@@ -1,11 +1,8 @@
-from django.urls import path, include
-from app import views as chat_views
-from django.contrib.auth.views import LoginView, LogoutView
-
+# chatapp/urls.py
+from django.urls import path
+from .views import index, roomName
+app_name = 'app'
 urlpatterns = [
-    path("", chat_views.chatPage, name="chat-page"),
-
-    # authentication section
-    path("auth/login/", LoginView.as_view(template_name="loginPage.html"), name="login-user"),
-    path("auth/logout/", LogoutView.as_view(), name="logout-user"),
+    path('', index, name="index"),
+    path('<str:room_name>/', roomName, name='room'),
 ]

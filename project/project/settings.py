@@ -83,8 +83,8 @@ CHANNEL_LAYERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = "chat-page"
-LOGOUT_REDIRECT_URL = "login-user"
+#LOGIN_REDIRECT_URL = "chat-page"
+#LOGOUT_REDIRECT_URL = "login-user"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
