@@ -1,18 +1,38 @@
-.sidebar {
-    width: 250px;
-    float: left;
-    border-right: 1px solid #ccc;
+/* Basic styling for the horizontal bar and selected users */
+.user-bar {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 1px solid #ccc;
     padding: 10px;
+}
+.user-item {
+    margin: 0 10px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #036358;
+    border-radius: 5px;
+}
+.user-item.selected {
+    background-color: #036358;
+    color: white;
 }
 .container {
-    margin-left: 270px;
     padding: 10px;
 }
-ul {
-    list-style: none;
+.selected-users {
+    margin-top: 20px;
+}
+.selected-users h3 {
+    font-size: 1.2rem;
+}
+.selected-users ul {
+    list-style-type: none;
     padding: 0;
 }
-ul li {
-    margin: 10px 0;
+.selected-users ul li {
+    margin: 5px 0;
     font-weight: bold;
+    color: #036358;
 }
