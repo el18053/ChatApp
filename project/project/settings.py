@@ -83,7 +83,7 @@ CHANNEL_LAYERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = "chat-page"
+LOGIN_REDIRECT_URL = "index" #"chat-page"
 LOGOUT_REDIRECT_URL = "login-user"
 
 # Database
