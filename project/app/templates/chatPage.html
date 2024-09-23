@@ -37,11 +37,19 @@
             <button type="submit" id="id_message_send_button"><i class="fas fa-paper-plane"></i> Send</button>
         </div>
     </div>
-    <script>
+        <!-- <script>
         //const chatSocket = new WebSocket("ws://" + window.location.host + "/");
-        const roomName = JSON.parse(document.getElementById('roomName').textContent);
-        const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + roomName + "/");
-        print(chatSocket)
+        -->
+    {{ roomName|json_script:"roomname" }}
+    <script>
+        const roomName = JSON.parse(document.getElementById('roomname').textContent);
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        );
         chatSocket.onopen = function (e) {
             console.log("The connection was set up successfully!");
         };
