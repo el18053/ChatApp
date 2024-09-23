@@ -38,7 +38,8 @@
         </div>
     </div>
     <script>
-        const chatSocket = new WebSocket("ws://" + window.location.host + "/");
+        //const chatSocket = new WebSocket("ws://" + window.location.host + "/");
+        const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/{{ roomName }}/");
         chatSocket.onopen = function (e) {
             console.log("The connection was set up successfully!");
         };

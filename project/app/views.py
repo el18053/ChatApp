@@ -10,10 +10,10 @@ def index(request, *args, **kwargs):
     }
     return render(request, "index.html", context)
 
-def chatPage(request, *args, **kwargs):
+def chatPage(request, roomName, *args, **kwargs):
     if not request.user.is_authenticated:
         return redirect("login-user")
     context = {
-        
+        "roomName" : roomName
     }
     return render(request, "chatPage.html", context)
