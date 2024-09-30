@@ -44,8 +44,9 @@ class index(View):
 
         #check if there is already a room betweem sender and receiver
 
-        get_room = Room.objects.filter(Q(sender_user=sender_user, receiver_user=receiver_user) | Q(sender_user=receiver_user, receiver_user=sender_user))
-        
+        #get_room = Room.objects.filter(Q(sender_user=sender_user, receiver_user=receiver_user) | Q(sender_user=receiver_user, receiver_user=sender_user))
+        get_room = Room.objects.filter(users__in=[sender_user, receiver_user]).distinct()
+
         #if the room already exists return it
         if get_room :
             room_name = get_room[0].room_name
@@ -62,8 +63,12 @@ class index(View):
                 else :
                     break
             """
-            create_room = Room.objects.create(sender_user=sender_user, receiver_user=receiver_user, room_name=new_room)
+            #create_room = Room.objects.create(sender_user=sender_user, receiver_user=receiver_user, room_name=new_room)
+            # Create the room instance first
+            create_room = Room.objects.create(room_name=new_room)
 
+            # Add users to the room
+            create_room.users.add(sender_user, receiver_user)
             create_room.save()
             room_name = create_room.room_name
             print("room_name : {}".format(room_name))
