@@ -29,7 +29,7 @@ class index(View):
         view to connect sender and receiver in a chat room
         """
         sender = request.user.id
-        receivers = request.POST.getlist('users')
+        receivers = request.POST.getlist('selected_users')
 
         print("receiver : {}".format(receivers))
         
@@ -50,6 +50,7 @@ class index(View):
         #if the room already exists return it
         if get_room :
             room_name = get_room[0].room_name
+            print("room_name is {}".format(room_name))
 
         #else create a new room
         else :
@@ -70,7 +71,7 @@ class index(View):
             for user in users:
                 create_room.users.add(user)
             create_room.save()
-            
+
             room_name = create_room.room_name
             print("room_name : {}".format(room_name))
 
