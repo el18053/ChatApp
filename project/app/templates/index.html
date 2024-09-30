@@ -20,6 +20,19 @@
         {% endfor %}
     </div>
 
+    <form method="post">
+        {% csrf_token %}
+        <select id="users" name="users">
+            {% for receiver in users %}
+            <option value="{{receiver.id}}">
+                <p>{{ receiver.username}} : {{ receiver.first_name }} {{ receiver.last_name }}</p>
+            </option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button class="btn" type="submit" style="background-color: #1B2430; color:white">Chat</button>
+    </form>
+
     <div class="container">
         <h3>Selected Users:</h3>
         <div class="selected-users">
