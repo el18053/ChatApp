@@ -22,30 +22,30 @@ class index(View):
         context = {
             'users' : users
         }
-        return render(request, 'index.html', context)
+        return render(request, 'index_2.html', context)
 
     def post(self, request):
-        # Get all users
-        users = User.objects.filter(is_superuser=False)
-
         """
         view to connect sender and receiver in a chat room
         """
         sender = request.user.id
-        receiver = request.POST['users']
+        receivers = request.POST.getlist('users')
+
+        print("receiver : {}".format(receivers))
         
         sender_user = User.objects.get(id=sender)
-        receiver_user = User.objects.get(id=receiver)
+        receiver_users = [User.objects.get(id=receiver) for receiver in receivers]
 
-        print("sender : {}".format(sender_user))
-        print("receiver : {}".format(receiver_user))
+        print("sender_user : {}".format(sender_user))
+        print("receiver_user : {}".format(receiver_users))
         #sending the receiver as a session variable
-        request.session['receiver_user'] = receiver
+        #request.session['receiver_user'] = receiver
 
         #check if there is already a room betweem sender and receiver
-
         #get_room = Room.objects.filter(Q(sender_user=sender_user, receiver_user=receiver_user) | Q(sender_user=receiver_user, receiver_user=sender_user))
-        get_room = Room.objects.filter(users__in=[sender_user, receiver_user]).distinct()
+        users = [sender_user]
+        users = users + receiver_users
+        get_room = Room.objects.filter(Q(users__in=users))
 
         #if the room already exists return it
         if get_room :
@@ -53,7 +53,7 @@ class index(View):
 
         #else create a new room
         else :
-            new_room = "_".join(sorted([str(sender_user), str(receiver_user)]))
+            new_room = "_".join(sorted([str(user) for user in users]))
 
             """
             while True:
@@ -66,10 +66,11 @@ class index(View):
             #create_room = Room.objects.create(sender_user=sender_user, receiver_user=receiver_user, room_name=new_room)
             # Create the room instance first
             create_room = Room.objects.create(room_name=new_room)
-
             # Add users to the room
-            create_room.users.add(sender_user, receiver_user)
+            for user in users:
+                create_room.users.add(user)
             create_room.save()
+            
             room_name = create_room.room_name
             print("room_name : {}".format(room_name))
 
