@@ -2,94 +2,42 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
-
-<link rel="stylesheet" href="{% static 'index.css' %}">
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>Chats Room</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Users</title>
 </head>
 <body>
-
-    <form method="post">
-        {% csrf_token %}
-        <select id="users" name="users">
-            {% for receiver in users %}
-            <option value="{{receiver.id}}">
-                <p>{{ receiver.username}}</p> <!-- maybe add {{ receiver.first_name }} {{ receiver.last_name }} -->
-            </option>
-            {% endfor %}
-        </select>
-        <br><br>
-        <button class="btn" type="submit" style="background-color: #1B2430; color:white">Chat</button>
-    </form>
-
-    <!--
-    <div class="user-bar">
-        {% for user in users %}
-            <div class="user-item" data-username="{{ user.username }}" id="user_{{ user.id }}">
-                {{ user.username }}
-            </div>
-        {% endfor %}
-    </div>
-    -->
     <div class="container">
-        <h3>Selected Users:</h3>
-        <div class="selected-users">
-            <ul id="selected-users-list">
-                <!-- Selected users will be added here dynamically -->
-            </ul>
+        <div class="sidenav">
+            <h2>Users</h2>
+            <form method="post" action="{% url 'index' %}">
+                {% csrf_token %}
+                <ul>
+                    {% for user in users %}
+                        <li>
+                            <input type="checkbox" name="selected_users" value="{{ user.id }}">
+                            {{ user.username }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button type="submit">Create</button>
+            </form>
         </div>
 
-    <div class="container">
-        <h3>Enter any chat room of your choice?</h3><br>
-        <input id="roomname" type="text" size="100"><br><br>
-        <input id="submit" type="button" value="Enter">
+        <div class="rooms">
+            <h1>Create New Room</h1>
+            <h2>Available Rooms</h2>
+            <ul>
+                {% for room in rooms %}
+                    <li>{{ room.room_name }}</li>
+                {% empty %}
+                    <li>No Rooms available.</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-    <script>
-
-        // Array to store selected users
-        let selectedUsers = [];
-
-        // Handle clicking on a user
-        document.querySelectorAll('.user-item').forEach(function(userElement) {
-            userElement.onclick = function() {
-                const username = this.getAttribute('data-username');
-
-                // If the user is already selected, deselect them
-                if (selectedUsers.includes(username)) {
-                    selectedUsers = selectedUsers.filter(user => user !== username);
-                    this.classList.remove('selected');
-                } else {
-                    // Otherwise, select the user
-                    selectedUsers.push(username);
-                    this.classList.add('selected');
-                }
-
-                // Update the list of selected users
-                updateSelectedUsersList();
-            };
-        });
-
-        // Update the selected users list displayed below the bar
-        function updateSelectedUsersList() {
-            const selectedUsersList = document.querySelector('#selected-users-list');
-            selectedUsersList.innerHTML = '';  // Clear current list
-
-            selectedUsers.forEach(function(user) {
-                const li = document.createElement('li');
-                li.textContent = user;
-                selectedUsersList.appendChild(li);
-            });
-        }
-
-
-        document.querySelector('#roomname').focus();
-        document.querySelector('#submit').onclick = function(e) {
-            var myRoom = document.querySelector('#roomname').value;
-            window.location.pathname = '/chat/' + myRoom + '/';
-        };
-    </script>
 </body>
 </html>

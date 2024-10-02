@@ -36,3 +36,45 @@
     font-weight: bold;
     color: #036358;
 }
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex; /* Use flexbox for layout */
+    height: 100vh; /* Full height of the viewport */
+}
+
+.sidenav {
+    width: 250px; /* Fixed width for the sidebar */
+    background-color: #f0f0f0; /* Light background for contrast */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    overflow-y: auto; /* Scrollable if content overflows */
+}
+
+.rooms {
+    flex: 1; /* Take up remaining space */
+    padding: 20px; /* Padding for the content */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+h1, h2 {
+    margin: 10px 0; /* Margin for headers */
+}
+
+ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+}
+
+li {
+    margin: 5px 0; /* Space between list items */
+}

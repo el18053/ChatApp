@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q, Count 
+from django.db.models import Q 
 from django.views import View
 from app.models import Room
 
@@ -19,10 +19,14 @@ class index(View):
         # Exclude the logged-in user and superusers
         users = User.objects.filter(is_superuser=False).exclude(id=request.user.id)
 
+        sender = User.objects.get(id=request.user.id)
+        rooms = Room.objects.filter(Q(users__in=[sender]))
+
         context = {
-            'users' : users
+            'users' : users,
+            'rooms' : rooms
         }
-        return render(request, 'index_2.html', context)
+        return render(request, 'index.html', context)
 
     def post(self, request):
         """
