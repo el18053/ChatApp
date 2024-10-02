@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, Count 
 from django.views import View
 from app.models import Room
 
@@ -42,10 +42,10 @@ class index(View):
         #request.session['receiver_user'] = receiver
 
         #check if there is already a room betweem sender and receiver
-        #get_room = Room.objects.filter(Q(sender_user=sender_user, receiver_user=receiver_user) | Q(sender_user=receiver_user, receiver_user=sender_user))
         users = [sender_user]
         users = users + receiver_users
-        get_room = Room.objects.filter(Q(users__in=users))
+        room_name = "_".join(sorted([str(user) for user in users]))
+        get_room = Room.objects.filter(Q(room_name=room_name))
 
         #if the room already exists return it
         if get_room :
@@ -64,7 +64,6 @@ class index(View):
                 else :
                     break
             """
-            #create_room = Room.objects.create(sender_user=sender_user, receiver_user=receiver_user, room_name=new_room)
             # Create the room instance first
             create_room = Room.objects.create(room_name=new_room)
             # Add users to the room
