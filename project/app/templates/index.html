@@ -6,13 +6,37 @@
 <head>
     <link rel="stylesheet" href="{% static 'index.css' %}">
     <link rel="stylesheet" href="{% static 'checkbox.css' %}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'page.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Select Users</title>
 </head>
 <body>
     <div class="container">
         <div class="sidenav">
+
+            <nav class="menu">
+                <ul class="items">
+                  <li class="item">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                  </li>
+                  <li class="item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </li>
+                  <li class="item">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </li>
+                  <li class="item item-active">
+                    <i class="fa fa-commenting" aria-hidden="true"></i>
+                  </li>
+                  <li class="item">
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                  </li>
+                  <li class="item">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                  </li>
+                </ul>
+            </nav>
+
             <h1>Create New Room</h1>
             <h2>Select Users</h2>
             <form method="post" action="{% url 'index' %}">
@@ -46,5 +70,7 @@
             </ul>
         </div>
     </div>
+
+
 </body>
 </html>

@@ -26,7 +26,7 @@ class index(View):
             'users' : users,
             'rooms' : rooms
         }
-        return render(request, 'index.html', context)
+        return render(request, 'page.html', context)
 
     def post(self, request):
         """
