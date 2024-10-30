@@ -41,10 +41,9 @@ body {
     padding: 10px;
     border-radius: 10px;
     height: 300px;
-    max-height: 300px;
-    /* Set a maximum height for the chat container */
-    overflow-y: auto;
-    /* Add a vertical scrollbar when needed */
+    max-height: 300px; /* Set a maximum height for the chat container */
+    word-wrap: break-word; /* Ensure long words break to the next line */
+    overflow-y: auto; /* Add a vertical scrollbar when needed */
 }
 
 .chat-input-container {
