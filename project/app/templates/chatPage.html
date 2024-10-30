@@ -76,7 +76,7 @@
             const data = JSON.parse(e.data);
             var messageContainer = document.querySelector("#id_chat_item_container");
             var div = document.createElement("div");
-            div.className = (data.username === "{{request.user.username}}") ? "chat-message right" : "chat-message left";
+            div.className = (data.username === "{{request.user.username}}") ? "chat-message left" : "chat-message right";
             div.innerHTML = `<div class="message-content">
                 <span class="message-username">${data.username.charAt(0).toUpperCase() + data.username.slice(1)}</span>
                 <span class="message-text">${data.message}</span>
