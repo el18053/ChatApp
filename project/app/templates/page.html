@@ -6,6 +6,7 @@
 <head>
     <link rel="stylesheet" href="{% static 'page.css' %}">
     <link rel="stylesheet" href="{% static 'popup.css' %}">
+    <link rel="stylesheet" href="{% static 'chatPage.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'checkbox.css' %}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="{% static 'js/page.js' %}" defer></script>
@@ -66,23 +67,6 @@
                 -->
                 </div>
             {% endfor %}
-             <!--
-            <div class="top"><span>To: <span class="name">Dog Woofson</span></span></div>
-            <div class="chat" data-chat="person1">
-                <div class="conversation-start">
-                    <span>Today, 6:48 AM</span>
-                </div>
-                <div class="bubble you">
-                    Hello,
-                </div>
-                <div class="bubble you">
-                    it's me.
-                </div>
-                <div class="bubble you">
-                    I was wondering...
-                </div>
-            </div>
-        -->
             <div class="write">
                 <a href="javascript:;" class="write-link attach"></a>
                 <input type="text" id="id_message_send_input" placeholder="Type your message..." />

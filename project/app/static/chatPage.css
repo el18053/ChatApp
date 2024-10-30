@@ -81,7 +81,7 @@ body {
 }
 
 .chat-message.right {
-        background-color: black;
+    background-color: black;
     width: 80%;
     float: right;
     clear: both;
