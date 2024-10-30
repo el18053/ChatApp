@@ -41,18 +41,18 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    @include font;
-    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/image.jpg');
-    background-size: cover;
-    background-repeat: none;
 }
 
 .chat__item__container {
     background-color: #f5f5f5;
     padding: 10px;
     border-radius: 10px;
-    height: fit-content;
     width: fit-content;
+    max-height: 300px;
+    max-width: 300px;
+    word-wrap: break-word; /* Ensure long words break to the next line */
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    margin: 5px; /* Adjust margin to minimize space between boxes */
     /* height: 300px;
     max-height: 300px; */
     /* Set a maximum height for the chat container */
